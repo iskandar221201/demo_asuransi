@@ -1,0 +1,60 @@
+---
+import { agent, waLink } from "../data/agent.js";
+
+const consultHref = waLink(
+  "Halo Pak Budi, saya ingin konsultasi gratis tentang asuransi PrimaLife untuk keluarga saya."
+);
+---
+
+<section class="bg-navy-50">
+  <div
+    class="mx-auto grid max-w-6xl gap-10 px-4 py-16 sm:px-6 md:grid-cols-[1.15fr_1fr] md:items-center md:py-20 lg:px-8"
+  >
+    <div data-reveal>
+      <p class="text-sm font-semibold text-navy-600">{agent.company}</p>
+      <h1
+        class="mt-3 max-w-[680px] text-4xl font-semibold text-navy-950 sm:text-5xl"
+      >
+        Pahami Dulu,<br />Baru Tanda Tangan
+      </h1>
+      <p class="mt-5 max-w-[680px] text-lg text-navy-700">
+        Saya membantu keluarga muda memahami asuransi dengan bahasa sehari-hari, tanpa
+        tekanan untuk membeli. Fokus saya: {agent.specialization.toLowerCase()}.
+      </p>
+      <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
+        <a
+          href={consultHref}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex min-h-11 items-center justify-center gap-2 rounded-md bg-wa-600 px-3 py-2 text-base font-semibold text-white transition-all duration-200 ease-fluid hover:bg-wa-700 active:scale-[0.98]"
+        >
+          <i class="ph ph-whatsapp-logo text-lg" aria-hidden="true"></i>
+          Konsultasi Gratis via WhatsApp
+        </a>
+        <a
+          href="#produk"
+          class="inline-flex min-h-11 items-center justify-center rounded-md border border-navy-300 px-3 py-2 text-base font-semibold text-navy-800 transition-all duration-200 ease-fluid hover:border-navy-500 hover:bg-white active:scale-[0.98]"
+        >
+          Pelajari Produknya
+        </a>
+      </div>
+      <p class="mt-4 text-sm text-navy-600">
+        Gratis dan tidak mengikat. Anda yang memutuskan, saya yang menjelaskan.
+      </p>
+    </div>
+
+    <figure class="mx-auto w-full max-w-sm" data-reveal style="transition-delay: 150ms">
+      <img
+        src="/img/agen.jpg"
+        alt={`Foto ilustrasi agen asuransi profesional (Unsplash), bukan foto asli ${agent.name}`}
+        width="800"
+        height="1000"
+        loading="eager"
+        class="aspect-[4/5] w-full rounded-lg border border-navy-200 object-cover"
+      />
+      <figcaption class="mt-3 text-center text-sm text-navy-600">
+        {agent.name}, agen berlisensi {agent.company} (foto ilustrasi dari Unsplash, ganti dengan foto asli)
+      </figcaption>
+    </figure>
+  </div>
+</section>

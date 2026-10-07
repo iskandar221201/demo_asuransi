@@ -1,0 +1,74 @@
+---
+const items = [
+  {
+    problem:
+      "\u201CKalau salah satu dari kami sakit keras, tabungan bisa habis untuk biaya rumah sakit.\u201D",
+    solution:
+      "Asuransi kesehatan menanggung biaya rawat inap dan pembedahan sesuai limit yang dipilih, sehingga tabungan dan dana darurat keluarga tidak ikut terkuras.",
+  },
+  {
+    problem:
+      "\u201CSaya pencari nafkah utama. Kalau terjadi sesuatu pada saya, keluarga hidup dari apa?\u201D",
+    solution:
+      "Asuransi jiwa memberikan uang pertanggungan kepada keluarga. Besarannya dihitung dari kebutuhan hidup tahunan, bukan asal besar, agar premi tetap masuk akal.",
+  },
+  {
+    problem:
+      "\u201CBiaya sekolah naik terus. Bagaimana menyiapkan dana pendidikan anak dari sekarang?\u201D",
+    solution:
+      "Dana pendidikan direncanakan bertahap sesuai jenjang sekolah, dengan proteksi agar rencana tetap berjalan meskipun orang tua berhalangan.",
+  },
+];
+---
+
+<section id="masalah" class="scroll-mt-24 bg-white">
+  <div class="mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-20 lg:px-8">
+    <div class="max-w-2xl" data-reveal>
+      <h2 class="text-3xl font-semibold text-navy-950 sm:text-4xl">
+        Kekhawatiran yang Sering Saya Dengar
+      </h2>
+      <p class="mt-4 text-lg text-navy-700">
+        Hampir semua keluarga muda yang saya temui memulai dari tiga pertanyaan ini.
+        Kabar baiknya, ketiganya bisa direncanakan, bukan sekadar dikhawatirkan.
+      </p>
+    </div>
+
+    <div class="mt-12 grid items-center gap-10 md:grid-cols-[1fr_1.6fr]">
+      <figure class="mx-auto w-full max-w-md md:max-w-none" data-reveal>
+        <img
+          src="/img/keluarga.jpg"
+          alt="Keluarga muda berkumpul di dapur (foto ilustrasi dari Unsplash)"
+          width="1200"
+          height="900"
+          loading="lazy"
+          class="aspect-[4/3] w-full rounded-lg object-cover"
+        />
+        <figcaption class="mt-3 text-center text-sm text-navy-600">
+          Foto ilustrasi keluarga (Unsplash)
+        </figcaption>
+      </figure>
+      <div>
+        {
+          items.map((item, i) => (
+            <div
+              class="grid gap-4 border-t border-navy-100 py-8 first:border-t-0 first:pt-0 last:pb-0 md:grid-cols-[auto_1fr] md:gap-8"
+              data-reveal
+              style={`transition-delay: ${i * 100}ms`}
+            >
+              <span class="font-heading text-4xl font-semibold text-navy-300" aria-hidden="true">
+                0{i + 1}
+              </span>
+              <div>
+                <p class="text-lg font-medium text-navy-900">{item.problem}</p>
+                <p class="mt-3 text-navy-700">
+                  <span class="font-semibold text-navy-900">Solusinya: </span>
+                  {item.solution}
+                </p>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>

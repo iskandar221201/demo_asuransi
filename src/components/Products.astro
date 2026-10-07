@@ -1,0 +1,135 @@
+---
+import { waLink } from "../data/agent.js";
+
+const products = [
+  {
+    name: "PrimaLife Jiwa",
+    kind: "Asuransi Jiwa",
+    featured: true,
+    note: "Fokus utama saya untuk keluarga muda",
+    benefits: [
+      "Uang pertanggungan untuk menjaga kebutuhan hidup keluarga",
+      "Masa bayar premi fleksibel: 5, 10, atau 20 tahun",
+      "Dapat ditambah manfaat penyakit kritis sesuai kebutuhan",
+      "Besaran uang pertanggungan dihitung dari penghasilan Anda",
+    ],
+  },
+  {
+    name: "PrimaLife Sehat",
+    kind: "Asuransi Kesehatan",
+    featured: false,
+    note: "Pelindung tabungan dari biaya medis",
+    benefits: [
+      "Manfaat rawat inap dan pembedahan sesuai plan",
+      "Jaringan rumah sakit rekanan di berbagai kota",
+      "Pilihan kelas kamar menyesuaikan anggaran",
+      "Masa tunggu dan pengecualian dijelaskan sebelum tanda tangan",
+    ],
+  },
+  {
+    name: "PrimaLife Cendekia",
+    kind: "Dana Pendidikan",
+    featured: false,
+    note: "Rencana pendidikan anak yang terukur",
+    benefits: [
+      "Dana pendidikan cair bertahap sesuai jenjang sekolah",
+      "Proteksi berlanjut jika orang tua berhalangan",
+      "Target dana dihitung dari biaya sekolah saat ini dan proyeksi kenaikannya",
+      "Ilustrasi resmi selalu diberikan sebelum Anda memutuskan",
+    ],
+  },
+];
+---
+
+<section id="produk" class="scroll-mt-24 bg-navy-50">
+  <div class="mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-20 lg:px-8">
+    <div class="max-w-2xl" data-reveal>
+      <h2 class="text-3xl font-semibold text-navy-950 sm:text-4xl">
+        Urutannya Penting: Jiwa Dulu, Baru yang Lain
+      </h2>
+      <p class="mt-4 text-lg text-navy-700">
+        Saya mulai dari proteksi jiwa sebagai fondasi, lalu melengkapi dengan kesehatan
+        dan dana pendidikan sesuai prioritas keluarga Anda.
+      </p>
+    </div>
+
+    <div class="mt-12 grid gap-6 lg:grid-cols-3">
+      {
+        products.map((p, i) => (
+          <article
+            data-reveal
+            style={`transition-delay: ${i * 100}ms`}
+            class:list={[
+              "flex flex-col rounded-lg p-8",
+              p.featured
+                ? "bg-navy-950 text-white lg:-mt-4 lg:mb-4"
+                : "border border-navy-200 bg-white text-navy-900",
+            ]}
+          >
+            <p
+              class:list={[
+                "text-sm font-semibold",
+                p.featured ? "text-gold-500" : "text-navy-600",
+              ]}
+            >
+              {p.kind}
+            </p>
+            <h3 class="mt-2 text-2xl font-semibold">{p.name}</h3>
+            <p
+              class:list={[
+                "mt-1 text-sm",
+                p.featured ? "text-navy-200" : "text-navy-600",
+              ]}
+            >
+              {p.note}
+            </p>
+            <ul
+              class:list={[
+                "mt-6 flex-1 space-y-3 border-t pt-6",
+                p.featured ? "border-navy-800" : "border-navy-100",
+              ]}
+            >
+              {p.benefits.map((b) => (
+                <li class="flex gap-3">
+                  <span
+                    aria-hidden="true"
+                    class:list={[
+                      "mt-2 h-2 w-2 shrink-0",
+                      p.featured ? "bg-gold-500" : "bg-navy-500",
+                    ]}
+                  />
+                  <span
+                    class:list={[
+                      p.featured ? "text-navy-100" : "text-navy-700",
+                    ]}
+                  >
+                    {b}
+                  </span>
+                </li>
+              ))}
+            </ul>
+            <a
+              href={waLink(`Halo Pak Budi, saya ingin meminta ilustrasi produk ${p.name}.`)}
+              target="_blank"
+              rel="noopener noreferrer"
+              class:list={[
+                "mt-8 inline-flex min-h-11 items-center justify-center gap-2 rounded-md px-3 py-2 text-base font-semibold transition-all duration-200 ease-fluid active:scale-[0.98]",
+                p.featured
+                  ? "bg-wa-600 text-white hover:bg-wa-700"
+                  : "border border-navy-300 text-navy-800 hover:border-navy-500 hover:bg-navy-50",
+              ]}
+            >
+              <i class="ph ph-whatsapp-logo text-lg" aria-hidden="true"></i>
+              Minta Ilustrasi
+            </a>
+          </article>
+        ))
+      }
+    </div>
+
+    <p class="mt-8 max-w-3xl text-sm text-navy-600" data-reveal>
+      Ringkasan manfaat di atas bersifat umum. Syarat, pengecualian, dan nilai pasti
+      mengacu pada ketentuan polis. Selalu baca ilustrasi dan polis sebelum memutuskan.
+    </p>
+  </div>
+</section>

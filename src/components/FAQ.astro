@@ -1,0 +1,68 @@
+---
+const faqs = [
+  {
+    q: "Apakah premi akan naik setiap tahun?",
+    a: "Tergantung jenis produknya. Pada asuransi jiwa murni (term life), premi umumnya tetap selama masa kontrak. Pada asuransi kesehatan, premi dapat menyesuaikan usia dan inflasi medis sesuai ketentuan polis. Saya selalu memperlihatkan tabel preminya sebelum Anda memutuskan.",
+  },
+  {
+    q: "Bagaimana proses klaimnya, dan apakah saya dibantu?",
+    a: "Ya, Anda dibantu. Saya mendampingi dari pengumpulan dokumen (formulir klaim, dokumen medis atau dokumen pendukung) sampai proses verifikasi selesai. Kejujuran saat mengisi data kesehatan di awal sangat menentukan kelancaran klaim.",
+  },
+  {
+    q: "Apakah penyakit yang sudah ada sebelumnya ditanggung?",
+    a: "Kondisi kesehatan yang sudah ada sebelum pengajuan akan melalui penilaian underwriting dan dapat dikenakan masa tunggu atau pengecualian, tergantung hasil penilaian. Yang terpenting: isi Surat Permintaan Asuransi Jiwa dengan jujur, karena ketidakjujuran dapat menggugurkan klaim.",
+  },
+  {
+    q: "Berapa premi yang wajar untuk keluarga seperti saya?",
+    a: "Tidak ada angka yang sama untuk semua keluarga. Premi dipengaruhi usia, besar uang pertanggungan, dan manfaat tambahan yang dipilih. Saya menghitung dari kebutuhan keluarga Anda terlebih dahulu, lalu menyesuaikan dengan anggaran yang nyaman, bukan sebaliknya.",
+  },
+  {
+    q: "Bagaimana jika saya telat membayar premi?",
+    a: "Umumnya ada masa tenggang setelah tanggal jatuh tempo, dan polis tetap berlaku selama masa itu. Jika lewat dari masa tenggang, polis bisa berhenti sementara dan ada prosedur pemulihannya. Detailnya berbeda per produk dan selalu tercantum di polis, jadi kita baca bersama sebelum Anda tanda tangan.",
+  },
+  {
+    q: "Apa bedanya membeli lewat agen dibanding langsung ke perusahaan asuransi?",
+    a: "Premi yang Anda bayar sama. Bedanya, lewat agen Anda memiliki satu orang yang mengenal polis Anda, bisa dihubungi saat butuh bantuan administrasi, perubahan data, atau pendampingan klaim.",
+  },
+  {
+    q: "Apakah konsultasi dan simulasi preminya benar-benar gratis?",
+    a: "Ya, gratis dan tidak mengikat. Anda boleh berkonsultasi, meminta simulasi, lalu memutuskan untuk tidak membeli sama sekali. Keputusan selalu di tangan Anda.",
+  },
+];
+---
+
+<section id="faq" class="scroll-mt-24 bg-white">
+  <div class="mx-auto max-w-3xl px-4 py-16 sm:px-6 md:py-20 lg:px-8">
+    <div data-reveal>
+      <h2 class="text-3xl font-semibold text-navy-950 sm:text-4xl">
+        Pertanyaan yang Sering Diajukan
+      </h2>
+      <p class="mt-4 text-lg text-navy-700">
+        Jawaban singkat untuk pertanyaan yang paling sering masuk ke WhatsApp saya.
+      </p>
+    </div>
+
+    <div class="mt-10 space-y-3">
+      {
+        faqs.map((f, i) => (
+          <details
+            class="group rounded-lg border border-navy-200 bg-white"
+            data-reveal
+            style={`transition-delay: ${i * 50}ms`}
+          >
+            <summary class="flex min-h-11 cursor-pointer items-center justify-between gap-4 px-6 py-4 text-base font-semibold text-navy-900">
+              {f.q}
+              <i
+                class="ph ph-caret-down shrink-0 text-lg text-navy-500 transition-transform duration-200 ease-fluid group-open:rotate-180"
+                aria-hidden="true"
+              ></i>
+            </summary>
+            <div class="border-t border-navy-100 px-6 py-4 text-navy-700">
+              {f.a}
+            </div>
+          </details>
+        ))
+      }
+    </div>
+  </div>
+</section>

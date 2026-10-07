@@ -1,0 +1,31 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/Navbar.astro";
+import Hero from "../components/Hero.astro";
+import Problems from "../components/Problems.astro";
+import Tagline from "../components/Tagline.astro";
+import Products from "../components/Products.astro";
+import WhyMe from "../components/WhyMe.astro";
+import Testimonials from "../components/Testimonials.astro";
+import FAQ from "../components/FAQ.astro";
+import CTA from "../components/CTA.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<Layout
+  title="Budi Santoso, S.E., AAAIJ: Agen Asuransi Jiwa dan Kesehatan PrimaLife"
+  description="Konsultasi gratis asuransi jiwa, kesehatan, dan dana pendidikan bersama Budi Santoso, agen berlisensi PT Asuransi PrimaLife Indonesia. Dijelaskan dengan bahasa sehari-hari, tanpa tekanan untuk membeli."
+>
+  <Navbar />
+  <main id="konten">
+    <Hero />
+    <Problems />
+    <Tagline />
+    <Products />
+    <WhyMe />
+    <Testimonials />
+    <FAQ />
+    <CTA />
+  </main>
+  <Footer />
+</Layout>

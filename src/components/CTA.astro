@@ -1,0 +1,183 @@
+---
+import { agent, waLink } from "../data/agent.js";
+
+const directHref = waLink(
+  "Halo Pak Budi, saya ingin konsultasi tentang asuransi PrimaLife."
+);
+---
+
+<section id="kontak" class="scroll-mt-24 bg-navy-950 text-white">
+  <div
+    class="mx-auto grid max-w-6xl gap-12 px-4 py-16 sm:px-6 md:grid-cols-2 md:py-20 lg:px-8"
+  >
+    <div data-reveal>
+      <h2 class="text-3xl font-semibold sm:text-4xl">
+        Mulai dari Percakapan, Bukan Penawaran
+      </h2>
+      <p class="mt-4 max-w-md text-navy-100">
+        Isi data singkat di samping, dan pesan Anda akan terkirim ke WhatsApp saya
+        dengan format yang sudah siap. Kita mulai dari kebutuhan keluarga Anda,
+        bukan dari produk.
+      </p>
+      <p class="mt-4 max-w-md text-navy-100">
+        Satu hal yang jujur perlu saya sampaikan: usia masuk memengaruhi premi.
+        Semakin awal direncanakan, umumnya semakin ringan. Namun keputusan tetap di
+        tangan Anda, dan konsultasi ini tidak mengikat apa pun.
+      </p>
+      <a
+        href={directHref}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="mt-6 inline-flex min-h-11 items-center gap-2 rounded-md border border-navy-500 px-3 py-2 text-base font-semibold text-white transition-all duration-200 ease-fluid hover:border-navy-300 hover:bg-navy-900 active:scale-[0.98]"
+      >
+        <i class="ph ph-whatsapp-logo text-lg" aria-hidden="true"></i>
+        Atau langsung chat tanpa mengisi form
+      </a>
+    </div>
+
+    <form
+      id="simulasi-form"
+      data-wa={agent.waNumber}
+      novalidate
+      class="rounded-lg bg-white p-6 text-navy-900 sm:p-8"
+      data-reveal
+      style="transition-delay: 150ms"
+    >
+      <h3 class="text-lg font-semibold text-navy-950">Form Simulasi Premi</h3>
+      <p class="mt-1 text-sm text-navy-600">
+        Data ini hanya dipakai untuk menyusun pesan WhatsApp di perangkat Anda,
+        tidak disimpan di situs ini.
+      </p>
+
+      <div class="mt-6 space-y-4">
+        <div>
+          <label for="nama" class="block text-sm font-semibold text-navy-900">
+            Nama
+          </label>
+          <input
+            type="text"
+            id="nama"
+            name="nama"
+            autocomplete="name"
+            class="mt-1 block min-h-11 w-full rounded-md border border-navy-300 px-3 py-2 text-base text-navy-900 placeholder:text-navy-400"
+            placeholder="Nama Anda"
+          />
+        </div>
+
+        <div>
+          <label for="usia" class="block text-sm font-semibold text-navy-900">
+            Usia (tahun)
+          </label>
+          <input
+            type="number"
+            id="usia"
+            name="usia"
+            inputmode="numeric"
+            min="18"
+            max="70"
+            class="mt-1 block min-h-11 w-full rounded-md border border-navy-300 px-3 py-2 text-base text-navy-900 placeholder:text-navy-400"
+            placeholder="Contoh: 30"
+          />
+        </div>
+
+        <div>
+          <label for="produk" class="block text-sm font-semibold text-navy-900">
+            Produk yang diminati
+          </label>
+          <select
+            id="produk"
+            name="produk"
+            class="mt-1 block min-h-11 w-full rounded-md border border-navy-300 bg-white px-3 py-2 text-base text-navy-900"
+          >
+            <option value="PrimaLife Jiwa (asuransi jiwa)">PrimaLife Jiwa (asuransi jiwa)</option>
+            <option value="PrimaLife Sehat (asuransi kesehatan)">PrimaLife Sehat (asuransi kesehatan)</option>
+            <option value="PrimaLife Cendekia (dana pendidikan)">PrimaLife Cendekia (dana pendidikan)</option>
+            <option value="belum tahu, ingin diskusi dulu">Belum tahu, ingin diskusi dulu</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="catatan" class="block text-sm font-semibold text-navy-900">
+            Catatan (opsional)
+          </label>
+          <textarea
+            id="catatan"
+            name="catatan"
+            rows="3"
+            class="mt-1 block w-full rounded-md border border-navy-300 px-3 py-2 text-base text-navy-900 placeholder:text-navy-400"
+            placeholder="Contoh: ingin proteksi untuk 1 anak usia 2 tahun"
+          ></textarea>
+        </div>
+      </div>
+
+      <p
+        id="form-error"
+        role="alert"
+        class="mt-4 hidden rounded-md border border-red-300 bg-red-50 px-3 py-2 text-sm text-red-800"
+      >
+      </p>
+
+      <p
+        id="form-success"
+        class="mt-4 hidden rounded-md border border-wa-600 bg-green-50 px-3 py-2 text-sm text-navy-900"
+      >
+        Pesan sudah disiapkan. Silakan lanjutkan pengiriman di aplikasi WhatsApp Anda.
+      </p>
+
+      <button
+        type="submit"
+        class="mt-6 inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-md bg-wa-600 px-3 py-2 text-base font-semibold text-white transition-all duration-200 ease-fluid hover:bg-wa-700 active:scale-[0.98]"
+      >
+        <i class="ph ph-whatsapp-logo text-lg" aria-hidden="true"></i>
+        Kirim dan Lanjut ke WhatsApp
+      </button>
+    </form>
+  </div>
+
+  <script>
+    const form = document.getElementById("simulasi-form") as HTMLFormElement | null;
+    const errorEl = document.getElementById("form-error");
+    const successEl = document.getElementById("form-success");
+
+    function showError(msg: string) {
+      if (!errorEl) return;
+      errorEl.textContent = msg;
+      errorEl.classList.remove("hidden");
+      successEl?.classList.add("hidden");
+    }
+
+    form?.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const nama = (form.elements.namedItem("nama") as HTMLInputElement).value.trim();
+      const usiaRaw = (form.elements.namedItem("usia") as HTMLInputElement).value;
+      const usia = parseInt(usiaRaw, 10);
+      const produk = (form.elements.namedItem("produk") as HTMLSelectElement).value;
+      const catatan = (form.elements.namedItem("catatan") as HTMLTextAreaElement).value.trim();
+
+      if (!nama) {
+        showError("Mohon isi nama Anda terlebih dahulu.");
+        return;
+      }
+      if (!usiaRaw || Number.isNaN(usia) || usia < 18 || usia > 70) {
+        showError("Mohon isi usia antara 18 sampai 70 tahun.");
+        return;
+      }
+
+      errorEl?.classList.add("hidden");
+
+      const lines = [
+        `Halo Pak Budi, saya ${nama} (${usia} tahun).`,
+        `Saya ingin simulasi premi untuk ${produk}.`,
+      ];
+      if (catatan) lines.push(`Catatan: ${catatan}`);
+      lines.push("(Dikirim dari halaman demo)");
+
+      const wa = form.dataset.wa ?? "";
+      const url = `https://wa.me/${wa}?text=${encodeURIComponent(lines.join("\n"))}`;
+      window.open(url, "_blank", "noopener");
+
+      successEl?.classList.remove("hidden");
+    });
+  </script>
+</section>

@@ -1,0 +1,42 @@
+---
+const tagline =
+  "Saya tidak menjual rasa takut. Saya menghitung satu hal: kalau penghasilan utama berhenti, berapa lama keluarga Anda bisa bertahan, dan berapa yang dibutuhkan agar mereka tetap berdiri.";
+const words = tagline.split(" ");
+---
+
+<section aria-label="Tagline" class="bg-white">
+  <div class="mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-20 lg:px-8">
+    <p
+      id="tagline-text"
+      class="max-w-[680px] font-heading text-4xl font-semibold sm:text-5xl"
+    >
+      {
+        words.map((word, i) => (
+          <>
+            <span data-word style={`transition-delay: ${i * 45}ms`}>
+              {word}
+            </span>{" "}
+          </>
+        ))
+      }
+    </p>
+  </div>
+</section>
+
+<script>
+  const words = document.querySelectorAll("#tagline-text [data-word]");
+
+  const wordObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-lit");
+          wordObserver.unobserve(entry.target);
+        }
+      });
+    },
+    { rootMargin: "0px 0px -30% 0px", threshold: 0 }
+  );
+
+  words.forEach((word) => wordObserver.observe(word));
+</script>

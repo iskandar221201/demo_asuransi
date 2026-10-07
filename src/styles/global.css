@@ -1,0 +1,114 @@
+@import "tailwindcss";
+
+@theme {
+  /* Poppins: satu typeface untuk seluruh situs. Geometris dan tegas, cocok untuk
+     kesan institusional yang tetap ramah untuk audiens keluarga muda */
+  --font-heading: "Poppins", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-body: "Poppins", ui-sans-serif, system-ui, -apple-system, sans-serif;
+
+  /* Kurva easing fluid (B7): semua motion memakai ini, bukan easing default */
+  --ease-fluid: cubic-bezier(0.32, 0.72, 0, 1);
+
+  --color-navy-50: #f2f6fa;
+  --color-navy-100: #dfe8f1;
+  --color-navy-200: #c3d2e2;
+  --color-navy-300: #9ab2ca;
+  --color-navy-400: #6d8cae;
+  --color-navy-500: #4a6f93;
+  --color-navy-600: #39597b;
+  --color-navy-700: #2f4964;
+  --color-navy-800: #1e3a5c;
+  --color-navy-900: #142c48;
+  --color-navy-950: #0c1e33;
+
+  --color-gold-500: #c9a227;
+  --color-gold-600: #a5821c;
+
+  /* Hijau WhatsApp, digelapkan dari warna brand agar teks putih lolos kontras WCAG AA */
+  --color-wa-600: #107c41;
+  --color-wa-700: #0c6134;
+
+  --color-ink: #081627;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-white font-body text-navy-900 antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-heading;
+    /* Mencegah kata yatim di baris terakhir heading */
+    text-wrap: balance;
+  }
+
+  p,
+  li,
+  blockquote {
+    text-wrap: pretty;
+  }
+
+  details summary {
+    list-style: none;
+  }
+
+  details summary::-webkit-details-marker {
+    display: none;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-gold-600);
+    outline-offset: 2px;
+  }
+}
+
+/* Reveal saat scroll (B7): fade up berat, hanya aktif jika JS tersedia.
+   Tanpa JS, konten tetap terlihat penuh. */
+.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(4rem);
+  filter: blur(4px);
+  transition:
+    opacity 800ms var(--ease-fluid),
+    transform 800ms var(--ease-fluid),
+    filter 800ms var(--ease-fluid);
+}
+
+.js [data-reveal].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+/* Tagline reveal (B11): tiap kata mulai redup lalu menyala satu per satu
+   mengikuti urutan baca saat melintasi garis trigger viewport */
+.js [data-word] {
+  color: var(--color-navy-950);
+  opacity: 0.28;
+  transition: opacity 700ms var(--ease-fluid);
+}
+
+.js [data-word].is-lit {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .js [data-reveal],
+  .js [data-word] {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    transition: none;
+  }
+}

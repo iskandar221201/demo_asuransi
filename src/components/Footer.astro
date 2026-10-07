@@ -1,0 +1,41 @@
+---
+import { agent } from "../data/agent.js";
+---
+
+<footer class="bg-ink text-navy-200">
+  <div class="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
+    <div class="border-t-2 border-gold-500 pt-8">
+      <p class="font-heading text-lg font-semibold text-white">{agent.name}</p>
+      <p class="mt-1 text-sm">Agen {agent.company}</p>
+      <p class="mt-1 text-sm">
+        Lisensi keagenan: {agent.license}
+        <span class="text-navy-300">(nomor contoh untuk demo)</span>
+      </p>
+    </div>
+
+    <nav aria-label="Tautan legal" class="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-sm">
+      <a
+        href="/kebijakan-privasi/"
+        class="underline-offset-4 transition-all duration-200 ease-fluid hover:text-white hover:underline"
+      >
+        Kebijakan Privasi
+      </a>
+      <a
+        href="/syarat-ketentuan/"
+        class="underline-offset-4 transition-all duration-200 ease-fluid hover:text-white hover:underline"
+      >
+        Syarat dan Ketentuan
+      </a>
+    </nav>
+
+    <p class="mt-8 max-w-3xl text-sm">
+      Produk asuransi diawasi oleh OJK. Premi dan manfaat dapat berbeda tergantung
+      profil nasabah. Hubungi agen untuk ilustrasi lengkap.
+    </p>
+
+    <p class="mt-4 text-xs text-navy-300">
+      Halaman ini adalah demo. Seluruh nama, angka, testimoni, dan nomor lisensi
+      bersifat ilustratif. Foto: Unsplash. &copy; 2026 {agent.shortName}.
+    </p>
+  </div>
+</footer>
